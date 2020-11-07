@@ -1,16 +1,16 @@
-window.addEventListener('DOMContentLoaded', function () {
-    var previousSlide = document.getElementById('previous-slide');
-    var nextSlide = document.getElementById('next-slide');
-    var flickity = new Flickity('#team-slider', {
+"use strict";
+window.addEventListener('DOMContentLoaded', () => {
+    const previousSlide = document.getElementById('previous-slide');
+    const nextSlide = document.getElementById('next-slide');
+    const flickity = new Flickity('#team-slider', {
         wrapAround: true,
         prevNextButtons: false,
         pageDots: false,
-        percentPosition: true
     });
-    previousSlide.addEventListener('click', function () {
+    previousSlide.addEventListener('click', () => {
         flickity.previous();
     });
-    nextSlide.addEventListener('click', function () {
+    nextSlide.addEventListener('click', () => {
         flickity.next();
     });
 });
