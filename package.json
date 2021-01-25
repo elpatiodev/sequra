@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/elpatiodev/sequra#readme",
   "dependencies": {
-    "@types/flickity": "^2.2.4"
+    "@types/flickity": "^2.2.4",
+    "cookie": "^0.4.1"
   }
 }
