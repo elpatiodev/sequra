@@ -65,8 +65,8 @@ Webflow.push(function () {
                         return [4, authenticateUser(email, password)];
                     case 1:
                         authResponse = _a.sent();
-                        if (rememberSessionCheckbox.checked)
-                            storeSession();
+                        storeSession();
+                        console.log(authResponse);
                         if (authResponse.status === 'ok')
                             window.location.replace('/');
                         else
@@ -133,5 +133,7 @@ Webflow.push(function () {
             });
         });
     }
-    function storeSession() { }
+    function storeSession() {
+        document.cookie = "";
+    }
 });

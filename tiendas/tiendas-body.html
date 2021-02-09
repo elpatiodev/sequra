@@ -1,3 +1,5 @@
+<script src="https://cdn.finsweet.com/files/cmslibrary-v1.8.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.reset-filter').click();
@@ -16,99 +18,6 @@
       // set attribute to the parent element dynamically
       element.parentElement.setAttribute('filter-by', elementText);
     }
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // create a new Library instance and store it in a variable called "projectsGrid"
-    var projectsGrid = new FsLibrary('.collection-list');
-
-    // define our filter group(s)
-    var myFilters = [
-      {
-        filterWrapper: '.search-parent',
-        filterType: 'exclusive',
-      },
-      {
-        filterWrapper: '.filters-wrapper',
-        filterType: 'exclusive',
-        filterByClass: '.cat',
-      },
-    ];
-    // run loadmore on our instance
-    projectsGrid.loadmore({
-      button: '.load-more-button',
-      loadAll: true,
-      resetIx: true,
-      infiniteScroll: true,
-      infiniteScrollPercentage: 70,
-      animation: {
-        enable: true,
-        duration: 0.3,
-        easing: 'ease',
-        effects: 'fade',
-      },
-    });
-    // run filter on our instance
-    projectsGrid.filter({
-      filterArray: myFilters, // the filter group name we defined
-      activeClass: 'fltr-active', // the active class we give to our buttons
-      animation: {
-        enable: true,
-        duration: 200,
-        easing: 'ease-out',
-        effects: 'fade translate(0px,20px)',
-      },
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // create a new Library instance and store it in a variable called "fsSlider"
-    var fsSlider = new FsLibrary('.taller');
-    // run Slider on our instance
-    fsSlider.slider({
-      sliderComponent: '.slider-taller',
-      resetIx: true,
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // create a new Library instance and store it in a variable called "fsSlider"
-    var fsSlider = new FsLibrary('.formacion');
-    // run Slider on our instance
-    fsSlider.slider({
-      sliderComponent: '.slider-formacion',
-      resetIx: true,
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // create a new Library instance and store it in a variable called "fsSlider"
-    var fsSlider = new FsLibrary('.dental');
-    // run Slider on our instance
-    fsSlider.slider({
-      sliderComponent: '.slider-dental',
-      resetIx: true,
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // create a new Library instance and store it in a variable called "fsSlider"
-    var fsSlider = new FsLibrary('.vets');
-    // run Slider on our instance
-    fsSlider.slider({
-      sliderComponent: '.slider-vets',
-      resetIx: true,
-    });
   });
 </script>
 
@@ -154,9 +63,7 @@
       filter.addEventListener('click', function () {
         var _a;
         var active =
-          (_a = filter.parentElement) === null || _a === void 0
-            ? void 0
-            : _a.classList.contains('fltr-active');
+          (_a = filter.parentElement) === null || _a === void 0 ? void 0 : _a.classList.contains('fltr-active');
         if (active) setDefaultText();
         else filtersTitle.textContent = filter.textContent;
       });
@@ -184,3 +91,96 @@
     });
   });
 </script>
+
+<script>
+  (function () {
+    // create a new Library instance and store it in a variable called "projectsGrid"
+    var projectsGrid = new FsLibrary('.collection-list');
+
+    // define our filter group(s)
+    var myFilters = [
+      {
+        filterWrapper: '.search-parent',
+        filterType: 'exclusive',
+      },
+      {
+        filterWrapper: '.filters-wrapper',
+        filterType: 'exclusive',
+        filterByClass: '.cat',
+      },
+    ];
+    // run loadmore on our instance
+    projectsGrid.loadmore({
+      button: '.load-more-button',
+      loadAll: true,
+      resetIx: true,
+      animation: {
+        enable: true,
+        duration: 0.3,
+        easing: 'ease',
+        effects: 'fade',
+      },
+    });
+    // run filter on our instance
+    window.addEventListener('load', function () {
+      projectsGrid.filter({
+        filterArray: myFilters, // the filter group name we defined
+        activeClass: 'fltr-active', // the active class we give to our buttons
+        animation: {
+          enable: true,
+          duration: 200,
+          easing: 'ease-out',
+          effects: 'fade translate(0px,20px)',
+        },
+      });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    // create a new Library instance and store it in a variable called "fsSlider"
+    var fsSlider = new FsLibrary('.taller');
+    // run Slider on our instance
+    fsSlider.slider({
+      sliderComponent: '.slider-taller',
+      resetIx: true,
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    // create a new Library instance and store it in a variable called "fsSlider"
+    var fsSlider = new FsLibrary('.formacion');
+    // run Slider on our instance
+    fsSlider.slider({
+      sliderComponent: '.slider-formacion',
+      resetIx: true,
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    // create a new Library instance and store it in a variable called "fsSlider"
+    var fsSlider = new FsLibrary('.dental');
+    // run Slider on our instance
+    fsSlider.slider({
+      sliderComponent: '.slider-dental',
+      resetIx: true,
+    });
+  })();
+</script>
+
+<!-- <script>
+  (function () {
+    // create a new Library instance and store it in a variable called "fsSlider"
+    var fsSlider = new FsLibrary('.vets');
+    // run Slider on our instance
+    fsSlider.slider({
+      sliderComponent: '.slider-vets',
+      resetIx: true,
+    });
+  })();
+</script> -->

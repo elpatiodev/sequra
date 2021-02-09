@@ -10,18 +10,12 @@ var Webflow = Webflow || [];
 Webflow.push(() => {
   // ---------- DOM Elements ----------
   const loginForm = document.getElementById('login-form') as HTMLFormElement;
-  const submitButton = loginForm.querySelector(
-    'input[type="submit"]'
-  ) as HTMLInputElement;
+  const submitButton = loginForm.querySelector('input[type="submit"]') as HTMLInputElement;
   const loginLoader = document.getElementById('login-loader') as HTMLDivElement;
-  const loginErrorTrigger = document.getElementById(
-    'login-error-trigger'
-  ) as HTMLDivElement;
+  const loginErrorTrigger = document.getElementById('login-error-trigger') as HTMLDivElement;
   const emailInput = document.getElementById('email') as HTMLInputElement;
   const passwordInput = document.getElementById('password') as HTMLInputElement;
-  const rememberSessionCheckbox = document.getElementById(
-    'remember-session'
-  ) as HTMLInputElement;
+  const rememberSessionCheckbox = document.getElementById('remember-session') as HTMLInputElement;
 
   // ---------- Constants ----------
   const authURL = 'https://simbox.sequrapi.com/internal_api/users/authenticate';
@@ -56,9 +50,10 @@ Webflow.push(() => {
     // Authenticate account
     const authResponse: authResponse = await authenticateUser(email, password);
 
-    if (rememberSessionCheckbox.checked) storeSession();
+    storeSession();
 
     // Redirect user to the page or show login error
+    console.log(authResponse);
     if (authResponse.status === 'ok') window.location.replace('/');
     else triggerLoginError('show');
 
@@ -134,5 +129,8 @@ Webflow.push(() => {
     return await response.json();
   }
 
-  function storeSession() {}
+  function storeSession() {
+    // TODO. If the Remember session is checked, set the cookie to expire in one year. If not, set the cookie to expire with the session
+    document.cookie = ``;
+  }
 });
