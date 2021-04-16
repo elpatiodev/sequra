@@ -1,16 +1,16 @@
 "use strict";
-document.addEventListener('DOMContentLoaded', function () {
-    var filtersTitle = document.querySelector('#filters-title');
-    var filtersAll = document.querySelector('.filter-by-all');
-    var filters = document.querySelectorAll('.filter-by-text');
+document.addEventListener('DOMContentLoaded', () => {
+    const filtersTitle = document.querySelector('#filters-title');
+    const filtersAll = document.querySelector('.filter-by-all');
+    const filters = document.querySelectorAll('.filter-by-text');
     if (!filtersTitle || !filtersAll || !filters.length)
         return;
-    var defaultText = filtersTitle.textContent;
+    const defaultText = filtersTitle.textContent;
     filtersAll.addEventListener('click', setDefaultText);
-    filters.forEach(function (filter) {
-        filter.addEventListener('click', function () {
+    filters.forEach((filter) => {
+        filter.addEventListener('click', () => {
             var _a;
-            var active = (_a = filter.parentElement) === null || _a === void 0 ? void 0 : _a.classList.contains('fltr-active');
+            const active = (_a = filter.parentElement) === null || _a === void 0 ? void 0 : _a.classList.contains('fltr-active');
             if (active)
                 setDefaultText();
             else

@@ -1,27 +1,39 @@
 'use strict';
-document.addEventListener('DOMContentLoaded', function () {
-  var ENDPOINT = '';
-  var form = document.querySelector('form');
-  if (!form) return;
-  var termsCheckbox = form.querySelector('[name="terms"]');
-  var handleSubmit = function (e) {
-    var formData = new FormData(form);
-    var body = {};
-    formData.forEach(function (value, key) {
-      return (body[key] = value);
-    });
-    if (termsCheckbox) body.terms = body.terms ? 'Aceptado' : 'Rechazado';
-    try {
-      fetch(ENDPOINT, {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    } catch (error) {
-      console.log(error);
+window.addEventListener('submit', (e) => {
+  const form = e.target;
+  if (!(form instanceof HTMLFormElement)) return;
+  const endpoint = form.dataset.endpoint;
+  if (!endpoint) return;
+  const body = {};
+  const elements = form.querySelectorAll('[data-name]');
+  for (const element of elements) {
+    const datasetName = element.dataset.name;
+    if (!datasetName) continue;
+    let value;
+    switch (element.type) {
+      case 'checkbox':
+        if (!(element instanceof HTMLInputElement)) break;
+        value = element.checked ? element.dataset.checkedValue : element.dataset.uncheckedValue;
+        break;
+      case 'radio':
+        const checkedOption = form.querySelector(`input[name="${element.name}"]:checked`);
+        if (checkedOption instanceof HTMLInputElement) value = checkedOption.value;
+        break;
+      default:
+        value = element.value;
+        break;
     }
-  };
-  form.addEventListener('submit', handleSubmit);
+    body[datasetName] = value;
+  }
+  try {
+    fetch(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
